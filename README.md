@@ -17,6 +17,19 @@ correlation distances, minimum spanning trees, principal components, Granger
 predictability matrices, and HMM latent states—are descriptive characterisations
 of the empirical joint distribution of returns.
 
+## Key results
+
+- All four major crisis episodes tested (2007–2009 GFC, 2019–2020 COVID-19
+  dislocation, 2022–2023 Federal Reserve tightening cycle, and the
+  current-study window through April 2026) breach the Kritzman et al. (2011)
+  0.50 Absorption Ratio threshold.
+- An out-of-sample HMM regime detector, calibrated on 14 years of multi-crisis
+  training history, correctly identified the April 2026 stress regime with
+  bounded posterior entropy.
+- Cross-validated the network-topology approach against a parametric
+  DCC-GARCH benchmark (MST Jaccard similarity = 0.455), showing two
+  independent methods agree on market structure.
+
 ## Overview
 
 The framework integrates four methodological layers applied to nine globally
@@ -141,7 +154,7 @@ terms.
 
 ## Contact
 
-Youness Yachruti — yyachruti@gmail.com
+Youness Yachruti — yyachruti@gmail.com · [LinkedIn](https://www.linkedin.com/in/youness-yachruti/)
 
 ## References
 
