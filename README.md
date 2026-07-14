@@ -30,6 +30,19 @@ of the empirical joint distribution of returns.
   DCC-GARCH benchmark (MST Jaccard similarity = 0.455), showing two
   independent methods agree on market structure.
 
+## Live dashboard
+
+A running instance of the framework's core layer (Rolling Absorption Ratio,
+the standardised AR delta, HMM regime state, and the current correlation
+matrix) is live at
+[youness-yachruti.pages.dev/quantitative-finance/geometry-of-risk](https://youness-yachruti.pages.dev/quantitative-finance/geometry-of-risk/),
+updated daily. It intentionally diverges from this repository's methodology
+in one way: the HMM there is refit fresh on every update rather than using
+the single, out-of-sample-validated model described below — see
+`scripts/compute_risk_dashboard.py` and the dashboard page itself for the
+full explanation. For the peer-reviewed, fixed-model analysis, use this
+repository and `notebooks/geometry_of_risk.ipynb`.
+
 ## Overview
 
 The framework integrates four methodological layers applied to nine globally

@@ -60,3 +60,4 @@ data/output/
 # Don't commit local environment-specific config
 .env
 .envrc
+journal application risk /
