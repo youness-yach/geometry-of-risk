@@ -28,6 +28,7 @@ four metrics, current snapshot values, and a generation timestamp.
 import json
 import sys
 from datetime import datetime, timezone
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -171,6 +172,7 @@ def main():
         },
     }
 
+    Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w") as f:
         json.dump(payload, f, indent=2)
 
