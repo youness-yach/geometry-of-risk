@@ -8,7 +8,7 @@ scipy>=1.10,<2.0
 
 # Machine learning and statistical modelling
 scikit-learn>=1.3,<2.0
-statsmodels>=0.14,<1.0
+statsmodels>=0.14,<0.15   # 0.15 removed grangercausalitytests(verbose=...)
 hmmlearn>=0.3,<1.0
 arch>=6.0,<7.0
 
@@ -22,6 +22,7 @@ pandas-datareader>=0.10,<1.0
 # Visualization
 matplotlib>=3.7,<4.0
 seaborn>=0.12,<1.0
+plotly>=5.0,<7.0
 
 # Jupyter
 jupyter>=1.0,<2.0

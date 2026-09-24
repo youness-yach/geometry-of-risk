@@ -19,16 +19,44 @@ of the empirical joint distribution of returns.
 
 ## Key results
 
-- All four major crisis episodes tested (2007–2009 GFC, 2019–2020 COVID-19
-  dislocation, 2022–2023 Federal Reserve tightening cycle, and the
-  current-study window through April 2026) breach the Kritzman et al. (2011)
-  0.50 Absorption Ratio threshold.
-- An out-of-sample HMM regime detector, calibrated on 14 years of multi-crisis
-  training history, correctly identified the April 2026 stress regime with
-  bounded posterior entropy.
-- Cross-validated the network-topology approach against a parametric
-  DCC-GARCH benchmark (MST Jaccard similarity = 0.455), showing two
-  independent methods agree on market structure.
+- **The Absorption Ratio breaches Kritzman et al.'s (2011) 0.50 threshold in
+  all four episodes tested.** Peaks: GFC 0.537 (on 10.5% of days), COVID 0.601
+  (5.5%), Fed tightening 0.529 (8.3%), and the current study 0.507 (1.4%). The
+  current-study breach is brief and marginal: 3 days at the very end of the
+  window.
+- **The out-of-sample HMM flags stress only when it happened.** Trained on
+  2011 to March 2025 only, it labels 4.1% of the following year as stress (the
+  training base rate was 25.6%), in exactly two episodes: 1–7 April 2025 (the
+  tariff shock) and 20–24 April 2026 (the end-of-sample peak). Posterior
+  entropy averages 0.07.
+- **Every Bonferroni-surviving Granger link points into Japan.** Of 72
+  directional pairs, 4 survive α* = 0.0007: US, EU, China and emerging-market
+  equity each lead Japanese equity.
+- **Two independent methods partly agree on market structure.** The
+  correlation-network tree and a parametric DCC-GARCH tree share 5 of 8 links
+  (Jaccard = 0.455).
+- **Oil is quasi-exogenous.** Joint F-tests don't reject in either direction
+  (p = 0.38 and 0.33), yet oil explains 11–16% of the 10-day forecast-error
+  variance of EU equity, emerging markets and the US 10-year yield.
+
+## Visual tour
+
+| | |
+|---|---|
+| ![Correlation structure](figures/1_correlation_matrix.png) **Correlation structure.** The current-study window, 9 assets. | ![Minimum spanning tree](figures/2_minimum_spanning_tree.png) **Risk skeleton (MST).** The shortest set of links connecting all 9 assets by correlation distance. |
+| ![Granger causality](figures/3_granger_bonferroni.png) **Granger causality**, uncorrected vs Bonferroni. Only links into Japan survive. | ![Tail dependence](figures/4_tail_dependence.png) **Lower-tail dependence.** Which assets fall together in the worst 5% of days. |
+
+![Multi-crisis Absorption Ratio](figures/6_absorption_ratio_multi_crisis.png)
+*Absorption Ratio across four stress episodes. Shaded: days above the 0.50 threshold.*
+
+![Out-of-sample HMM](figures/7_hmm_out_of_sample.png)
+*The out-of-sample HMM on April 2025 – April 2026, trained only on earlier data. Red: stress
+state. Bottom panel: posterior entropy (model uncertainty).*
+
+<details><summary>DCC-GARCH dynamic vs static correlations</summary>
+
+![DCC-GARCH](figures/5_dcc_garch.png)
+</details>
 
 ## Live dashboard
 
@@ -83,9 +111,14 @@ geometry-of-risk/
 ├── notebooks/
 │   └── geometry_of_risk.ipynb       Main reproducible notebook
 ├── data/
-│   └── asset_prices_long_history.csv  Bundled dataset (April 2025–April 2026 + long history)
+│   ├── asset_prices_long_history.csv  Long-history closes, 2007 – 24 Apr 2026
+│   └── snapshot/                      Frozen current-study window (prices, volumes, VIX, MOVE, FRED)
+├── figures/                         README charts, exported from the notebook
 ├── scripts/
-│   └── fetch_data.py                Optional: pull fresh data from Yahoo Finance
+│   ├── fetch_snapshot.py            Rebuilds data/snapshot/ (the manuscript window)
+│   ├── fetch_data.py                Optional: refresh the long-history CSV
+│   ├── export_figures.py            Copies the notebook's charts into figures/
+│   └── compute_risk_dashboard.py    Daily data for the live dashboard
 └── manuscript/
     └── README.md                    Pointer to the working paper
 ```
@@ -117,14 +150,14 @@ pip install -r requirements.txt
 
 #### Option 1 — Reproduce the manuscript results exactly
 
-The bundled `data/asset_prices_long_history.csv` contains the exact data used
-in the manuscript (April 2025 to 24 April 2026, with long history back to 2007).
+Everything the notebook reads is committed. `data/snapshot/` holds the
+current-study window (24 April 2025 – 24 April 2026, 261 trading days), and
+`data/asset_prices_long_history.csv` the long history. Nothing is downloaded,
+so results are the same on every run (about 40 seconds).
 
 ```bash
-jupyter notebook notebooks/geometry_of_risk.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/geometry_of_risk.ipynb
 ```
-
-Run all cells in order. Results will match the published manuscript.
 
 #### Option 2 — Run with fresh data
 
@@ -135,11 +168,27 @@ python scripts/fetch_data.py
 jupyter notebook notebooks/geometry_of_risk.ipynb
 ```
 
-This overwrites the bundled CSV with current data. Results will reflect the
-data as of the date of download and may differ from the published manuscript.
+This overwrites the long-history CSV with current data, and results will then
+differ from the manuscript. `scripts/fetch_snapshot.py` rebuilds the frozen
+current-study window, and the [live dashboard](https://youness-yachruti.pages.dev/quantitative-finance/geometry-of-risk/)
+shows the framework on today's data.
 
 ## Reproducibility notes
 
+- **Frozen inputs (September 2026).** The current-study sections originally
+  called `yf.download(period="1y")`, so every run pulled a different trailing
+  year. The previously saved outputs came from a late-May 2026 download, not
+  the manuscript window. Those calls now read `data/snapshot/` through
+  `snapshot_download()`, with the same arguments and return shape. After the
+  re-run, the headline findings are unchanged: the Absorption Ratio in all four
+  episodes, the four Bonferroni links into Japan, DCC-GARCH, the MST Jaccard
+  score, and the out-of-sample HMM. Descriptive figures moved slightly (for
+  example, oil's F-test p-values went from 0.77/0.25 to 0.38/0.33), and the
+  text quotes the re-run values.
+- **Fresh-clone fixes.** The long-history CSV path now points to `data/`.
+  `statsmodels` is pinned below 0.15, which removed an argument the Granger
+  code uses. `plotly` was added to `requirements.txt`. Verified by a clean
+  install and a full run.
 - All random seeds are set to `42` throughout the analysis.
 - Sample-specific results (correlations, MST topology, HMM states) may differ
   slightly across yfinance API versions or if data is pulled on different dates.
