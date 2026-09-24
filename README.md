@@ -4,6 +4,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![SSRN](https://img.shields.io/badge/SSRN-preprint-1f4e79.svg)](https://ssrn.com/abstract=SSRN_ID)
+[![DOI](https://img.shields.io/badge/DOI-10.2139%2Fssrn.SSRN_ID-blue.svg)](https://doi.org/10.2139/ssrn.SSRN_ID)
 
 This repository contains the complete code and data pipeline for the Geometry of
 Risk research project: a four-layer empirical monitoring framework for multi-asset
@@ -16,6 +18,8 @@ to derive prices from first principles. The statistical objects produced—
 correlation distances, minimum spanning trees, principal components, Granger
 predictability matrices, and HMM latent states—are descriptive characterisations
 of the empirical joint distribution of returns.
+
+**Paper:** [SSRN preprint](https://ssrn.com/abstract=SSRN_ID) · [PDF](manuscript/geometry_of_risk_preprint.pdf) · CC BY 4.0. [How the code relates to the paper's numbers](manuscript/README.md#reproducing-the-paper).
 
 ## Key results
 
@@ -68,7 +72,7 @@ updated daily. It intentionally diverges from this repository's methodology
 in one way: the HMM there is refit fresh on every update rather than using
 the single, out-of-sample-validated model described below — see
 `scripts/compute_risk_dashboard.py` and the dashboard page itself for the
-full explanation. For the peer-reviewed, fixed-model analysis, use this
+full explanation. For the paper's fixed-model analysis, use this
 repository and `notebooks/geometry_of_risk.ipynb`.
 
 ## Overview
@@ -120,7 +124,8 @@ geometry-of-risk/
 │   ├── export_figures.py            Copies the notebook's charts into figures/
 │   └── compute_risk_dashboard.py    Daily data for the live dashboard
 └── manuscript/
-    └── README.md                    Pointer to the working paper
+    ├── README.md                    Paper links, citation, paper-vs-code numbers
+    └── geometry_of_risk_preprint.pdf  SSRN preprint (CC BY 4.0)
 ```
 
 ## Getting started
@@ -184,7 +189,8 @@ shows the framework on today's data.
   episodes, the four Bonferroni links into Japan, DCC-GARCH, the MST Jaccard
   score, and the out-of-sample HMM. Descriptive figures moved slightly (for
   example, oil's F-test p-values went from 0.77/0.25 to 0.38/0.33), and the
-  text quotes the re-run values.
+  text quotes the re-run values. The full paper-vs-code comparison is in
+  [manuscript/README.md](manuscript/README.md#reproducing-the-paper).
 - **Fresh-clone fixes.** The long-history CSV path now points to `data/`.
   `statsmodels` is pinned below 0.15, which removed an argument the Granger
   code uses. `plotly` was added to `requirements.txt`. Verified by a clean
@@ -200,8 +206,9 @@ shows the framework on today's data.
 If you use this code or methodology, please cite:
 
 > Yachruti, Y. (2026). The Geometry of Risk: An Integrated Monitoring Framework
-> for Multi-Asset Systemic Stress. *Working paper.* Available at
-> https://github.com/youness-yach/geometry-of-risk
+> for Multi-Asset Systemic Stress. SSRN preprint. https://doi.org/10.2139/ssrn.SSRN_ID
+
+BibTeX is in [manuscript/README.md](manuscript/README.md#cite).
 
 ## License
 
@@ -210,9 +217,9 @@ If you use this code or methodology, please cite:
 **Data:** The bundled CSV is derived from Yahoo Finance public data. Users are
 responsible for compliance with Yahoo Finance's terms of service.
 
-**Manuscript:** The accompanying working paper is currently under peer review;
-reuse of the manuscript text is subject to the journal's eventual license
-terms.
+**Paper:** The preprint in `manuscript/` is licensed separately under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/): free to share and
+adapt with credit to the author. See [manuscript/README.md](manuscript/README.md).
 
 ## Contact
 
