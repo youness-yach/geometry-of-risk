@@ -5,10 +5,10 @@ Youness Yachruti · Independent Researcher · yyachruti@gmail.com
 
 | | |
 |---|---|
-| Preprint (SSRN) | https://ssrn.com/abstract=SSRN_ID |
-| DOI | [10.2139/ssrn.SSRN_ID](https://doi.org/10.2139/ssrn.SSRN_ID) |
+| Preprint (SSRN) | https://ssrn.com/abstract=7521018 |
+| DOI | [10.2139/ssrn.7521018](https://doi.org/10.2139/ssrn.7521018) |
 | PDF | [`geometry_of_risk_preprint.pdf`](geometry_of_risk_preprint.pdf) (manuscript version of May 2026) |
-| Status | Preprint, not peer reviewed |
+| Status | Preprint, not peer reviewed · posted 26 Sep 2026 · 34 pages |
 | Licence | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/): free to share and adapt, with credit to the author |
 
 The preprint has not been peer reviewed. It contains the full methodology, the
@@ -18,7 +18,7 @@ write-up of the results produced by this codebase.
 ## Cite
 
 > Yachruti, Y. (2026). The Geometry of Risk: An Integrated Monitoring Framework
-> for Multi-Asset Systemic Stress. SSRN preprint. https://doi.org/10.2139/ssrn.SSRN_ID
+> for Multi-Asset Systemic Stress. SSRN preprint. https://doi.org/10.2139/ssrn.7521018
 
 ```bibtex
 @misc{yachruti2026geometry,
@@ -26,8 +26,8 @@ write-up of the results produced by this codebase.
   title        = {The Geometry of Risk: An Integrated Monitoring Framework for Multi-Asset Systemic Stress},
   year         = {2026},
   howpublished = {SSRN preprint},
-  doi          = {10.2139/ssrn.SSRN_ID},
-  url          = {https://ssrn.com/abstract=SSRN_ID},
+  doi          = {10.2139/ssrn.7521018},
+  url          = {https://ssrn.com/abstract=7521018},
   note         = {Preprint}
 }
 ```

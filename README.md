@@ -4,8 +4,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![SSRN](https://img.shields.io/badge/SSRN-preprint-1f4e79.svg)](https://ssrn.com/abstract=SSRN_ID)
-[![DOI](https://img.shields.io/badge/DOI-10.2139%2Fssrn.SSRN_ID-blue.svg)](https://doi.org/10.2139/ssrn.SSRN_ID)
+[![SSRN](https://img.shields.io/badge/SSRN-preprint-1f4e79.svg)](https://ssrn.com/abstract=7521018)
+[![DOI](https://img.shields.io/badge/DOI-10.2139%2Fssrn.7521018-blue.svg)](https://doi.org/10.2139/ssrn.7521018)
 
 This repository contains the complete code and data pipeline for the Geometry of
 Risk research project: a four-layer empirical monitoring framework for multi-asset
@@ -19,7 +19,7 @@ correlation distances, minimum spanning trees, principal components, Granger
 predictability matrices, and HMM latent states—are descriptive characterisations
 of the empirical joint distribution of returns.
 
-**Paper:** [SSRN preprint](https://ssrn.com/abstract=SSRN_ID) · [PDF](manuscript/geometry_of_risk_preprint.pdf) · CC BY 4.0. [How the code relates to the paper's numbers](manuscript/README.md#reproducing-the-paper).
+**Paper:** [SSRN preprint](https://ssrn.com/abstract=7521018) · [PDF](manuscript/geometry_of_risk_preprint.pdf) · CC BY 4.0. [How the code relates to the paper's numbers](manuscript/README.md#reproducing-the-paper).
 
 ## Key results
 
@@ -206,7 +206,7 @@ shows the framework on today's data.
 If you use this code or methodology, please cite:
 
 > Yachruti, Y. (2026). The Geometry of Risk: An Integrated Monitoring Framework
-> for Multi-Asset Systemic Stress. SSRN preprint. https://doi.org/10.2139/ssrn.SSRN_ID
+> for Multi-Asset Systemic Stress. SSRN preprint. https://doi.org/10.2139/ssrn.7521018
 
 BibTeX is in [manuscript/README.md](manuscript/README.md#cite).
 
